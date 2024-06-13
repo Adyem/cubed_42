@@ -22,12 +22,18 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
+typedef struct s_texture_data
+{
+	char	*file_name;
+	void	*img_ptr;
+}	t_texture_data;
+
 typedef struct s_textures
 {
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
+	t_texture_data	north_texture;
+	t_texture_data	south_texture;
+	t_texture_data	west_texture;
+	t_texture_data	east_texture;
 }	t_textures;
 
 typedef struct s_colors
@@ -54,5 +60,8 @@ char	**ft_open_and_read(char *file);
 
 /*free memory*/
 void	ft_free_info(t_cubed *info);
+
+/*utils*/
+int		ft_strcmp_cubed(char *string1, char *string2);
 
 #endif

@@ -2,7 +2,8 @@ NAME		= cub3D
 DEBUG_NAME	= cub3D_debug
 
 SRC		= main.c \
-		  free_memory.c
+		  free_memory.c \
+		  utils01.c
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -14,7 +15,6 @@ HEADER	= cubed.h
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libftprintf.a
 
-# New minilibx setup
 MINILIBX_TGZ = minilibx-linux.tgz
 MINILIBX_DIR = minilibx-linux
 MINILIBX_LIB = $(MINILIBX_DIR)/libmlx_Linux.a
@@ -42,7 +42,6 @@ $(NAME): $(MINILIBX_LIB) $(OBJS) $(LIBFT)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-# New rule for handling minilibx
 $(MINILIBX_LIB):
 	tar -xzf $(MINILIBX_TGZ)
 	$(MAKE) -C $(MINILIBX_DIR)
