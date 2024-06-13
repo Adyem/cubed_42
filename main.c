@@ -18,4 +18,5 @@ int	main(int argc, char **argv)
 	if (!info)
 		return (ft_printf_fd(2, "Error allocating memory for info"), 2);
 	ft_initialize_info(info);
+	return (ft_free_info(info), 0);
 }

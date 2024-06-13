@@ -19,6 +19,9 @@ typedef struct	s_cubed
 	t_map	map;
 } t_cubed;
 
+/*free memory*/
+void	ft_free_info(t_cubed *info);
+
 # ifndef DEBUG
 #  define DEBUG 0
 # endif

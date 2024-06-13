@@ -2,6 +2,7 @@ NAME		= cub3D
 DEBUG_NAME	= cub3D_debug
 
 SRC		= main.c \
+		  free_memory.c
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
