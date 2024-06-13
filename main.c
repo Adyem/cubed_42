@@ -18,5 +18,8 @@ int	main(int argc, char **argv)
 	if (!info)
 		return (ft_printf_fd(2, "Error allocating memory for info"), 2);
 	ft_initialize_info(info);
+	info->map.content = ft_open_and_read(argv[1]);
+	if (!info->map.content)
+		return (ft_free_info(info), 2);
 	return (ft_free_info(info), 0);
 }
