@@ -69,7 +69,9 @@ fclean: clean
 
 re: fclean all
 
+both: all debug
+
 redebug: fclean debug
 
-.PHONY: all clean fclean re debug redebug
+.PHONY: all clean fclean re debug redebug both
 
