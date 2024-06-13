@@ -21,5 +21,5 @@ int	main(int argc, char **argv)
 	info->map.content = ft_open_and_read(argv[1]);
 	if (!info->map.content)
 		return (ft_free_info(info), 2);
-	return (ft_free_info(info), 0);
+	ft_parse_map(info);
 }
