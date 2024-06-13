@@ -1,27 +1,14 @@
+NAME		= cub3D
+DEBUG_NAME	= cub3D_debug
 
-NAME		= so_long
-DEBUG_NAME	= so_long_debug
-
-SRC		= so_long.c \
-		  read_file.c \
-		  free_memory.c \
-		  debug.c \
-		  error_map.c \
-		  check_map.c \
-		  check_route.c \
-		  open_window.c \
-		  error_mlx.c \
-		  init_info.c \
-		  run_game.c \
-		  handle_keypress.c \
-		  utils.c
+SRC		= main.c \
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -g
-HEADER	= so_long.h
+HEADER	= cubed.h
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libftprintf.a
@@ -74,4 +61,3 @@ both: all debug
 redebug: fclean debug
 
 .PHONY: all clean fclean re debug redebug both
-
