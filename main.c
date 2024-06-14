@@ -1,5 +1,13 @@
 #include "cubed.h"
 
+static void	ft_more_initializing(t_cubed *info)
+{
+	info->colors.floor_array = NULL;
+	info->colors.floor_string = NULL;
+	info->colors.ceiling_array = NULL;
+	info->colors.ceiling_string = NULL;
+}
+
 static void	ft_initialize_info(t_cubed *info)
 {
 	info->mlx = NULL;
@@ -24,10 +32,13 @@ static void	ft_initialize_info(t_cubed *info)
 	info->map.map = NULL;
 	info->map.copy_map = NULL;
 	info->map.player_start_amount = -1;
+	ft_more_initializing(info);
+	return ;
 }
 
 int	main(int argc, char **argv)
 {
+	int		error;
 	t_cubed	*info;
 
 	(void)argv;
@@ -35,10 +46,12 @@ int	main(int argc, char **argv)
 		return(ft_printf_fd(2, "Error: Incorrect amount of arguments\n"), 1);
 	info = (t_cubed *)malloc(sizeof(t_cubed));
 	if (!info)
-		return (ft_printf_fd(2, "Error allocating memory for info"), 2);
+		return (ft_printf_fd(2, "Error allocating memory for info\n"), 2);
 	ft_initialize_info(info);
 	info->map.content = ft_open_and_read(argv[1]);
 	if (!info->map.content)
 		return (ft_free_info(info), 2);
-	ft_parse_map(info);
+	error = ft_parse_map(info);
+	if (error)
+		return (ft_write_error(info, error), error);
 }

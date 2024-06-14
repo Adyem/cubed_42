@@ -41,8 +41,12 @@ typedef struct s_textures
 
 typedef struct s_colors
 {
-	int	floor_color[3];
-	int	ceiling_color[3];
+	char	*floor_string;
+	char	**floor_array;
+	char	*ceiling_string;
+	char	**ceiling_array;
+	int		floor_color[3];
+	int		ceiling_color[3];
 }	t_colors;
 
 typedef struct s_cubed
@@ -54,9 +58,11 @@ typedef struct s_cubed
 	t_colors	colors;
 }	t_cubed;
 
+/*error managment*/
+void	ft_write_error(t_cubed *info, int error);
 
 /*parse map*/
-void	ft_parse_map(t_cubed *info);
+int		ft_parse_map(t_cubed *info);
 
 /*open map*/
 char	**ft_open_and_read(char *file);
