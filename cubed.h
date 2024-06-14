@@ -18,8 +18,11 @@
 typedef struct s_map
 {
 	char	**content;
+	char	**map;
+	char	**copy_map;
 	int		width;
 	int		height;
+	int		player_start_amount;
 }	t_map;
 
 typedef struct s_texture_data

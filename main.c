@@ -21,6 +21,9 @@ static void	ft_initialize_info(t_cubed *info)
 	info->colors.ceiling_color[0] = -1;
 	info->colors.ceiling_color[1] = -1;
 	info->colors.ceiling_color[2] = -1;
+	info->map.map = NULL;
+	info->map.copy_map = NULL;
+	info->map.player_start_amount = -1;
 }
 
 int	main(int argc, char **argv)
