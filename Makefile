@@ -54,10 +54,14 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(DEBUG_NAME)
 
+hclean:
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+
 re: fclean all
 
 both: all debug
 
 redebug: fclean debug
 
-.PHONY: all clean fclean re debug redebug both
+.PHONY: all clean fclean re debug redebug both hclean
