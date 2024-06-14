@@ -47,7 +47,7 @@ $(MINILIBX_LIB):
 	$(MAKE) -C $(MINILIBX_DIR)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -rf $(MINILIBX_DIR)
 
@@ -55,7 +55,7 @@ fclean: clean
 	rm -f $(NAME) $(DEBUG_NAME)
 
 hclean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
