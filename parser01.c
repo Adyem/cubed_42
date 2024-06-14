@@ -1,5 +1,4 @@
 #include "cubed.h"
-#include "libft/libft/libft.h"
 
 static int	ft_check_images(char **image, char *string, char *check)
 {
@@ -46,5 +45,6 @@ int	ft_parse_map(t_cubed *info)
 		return (2);
 	if (ft_strlen(info->map.content[4]) != 1)
 		return (4);
+	error = ft_parse_map_2(info);
 	return (error);
 }
