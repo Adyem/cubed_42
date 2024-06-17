@@ -73,5 +73,6 @@ void	ft_free_info(t_cubed *info);
 
 /*utils*/
 int		ft_strcmp_cubed(char *string1, char *string2);
+int		ft_check_value_rgb(char *input);
 
 #endif

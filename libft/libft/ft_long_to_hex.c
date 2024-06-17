@@ -36,6 +36,8 @@ char	*ft_long_to_hex(long value)
 		return (ft_strdup("0"));
 	buffer_size = sizeof(long) * 2 + 1;
 	hexstr = (char *)ft_calloc(buffer_size + 1, sizeof(char));
+	if (!hexstr)
+		return (NULL);
 	i = 0;
 	while (number)
 	{
