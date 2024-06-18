@@ -55,6 +55,8 @@ int	ft_parse_map(t_cubed *info)
 {
 	int	error;
 
+	if (ft_check_length(info->map.content) < 8)
+		return (4);
 	error = 0;
 	error += ft_check_images(&info->textures.north_texture.file_name,
 			info->map.content[0], "NO ");
