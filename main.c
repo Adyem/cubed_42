@@ -1,4 +1,5 @@
 #include "cubed.h"
+#include <stdlib.h>
 
 static void	ft_more_initializing(t_cubed *info)
 {
@@ -36,6 +37,25 @@ static void	ft_initialize_info(t_cubed *info)
 	return ;
 }
 
+static int	ft_check_extension(char *filename)
+{
+	char	*ext;
+	int			len;
+	int			ext_len;
+	int			returnv;
+
+	returnv = 0;
+	ext = ".cub";
+	len = ft_strlen(filename);
+	ext_len = ft_strlen(ext);
+	if (len <= ext_len)
+		returnv = 1;
+	returnv = ft_strcmp_cubed(filename + len - ext_len, ext);
+	if (returnv)
+		ft_printf_fd(2, "Error: Extension file incorrect\n");
+	return (returnv);
+}
+
 int	main(int argc, char **argv)
 {
 	int		error;
@@ -44,9 +64,11 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc != 2)
 		return(ft_printf_fd(2, "Error: Incorrect amount of arguments\n"), 1);
+	if (ft_check_extension(argv[1]))
+		return (1);
 	info = (t_cubed *)malloc(sizeof(t_cubed));
 	if (!info)
-		return (ft_printf_fd(2, "Error allocating memory for info\n"), 2);
+		return (ft_printf_fd(2, "Error: allocating memory for info\n"), 2);
 	ft_initialize_info(info);
 	info->map.content = ft_open_and_read(argv[1]);
 	if (!info->map.content)

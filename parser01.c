@@ -6,7 +6,7 @@ static int	ft_check_images(char **image, char *string, char *check)
 		*image = ft_strdup(&string[3]);
 	if (!*image)
 	{
-		ft_printf_fd(2, "Error allocating memory Image name\n");
+		ft_printf_fd(2, "Error: allocating memory Image name\n");
 		return (2);
 	}
 	return (0);
@@ -18,7 +18,7 @@ static int	ft_check_colers(char **coler_string, char *string, char *check)
 		*coler_string = ft_strdup(&string[2]);
 	if (!*coler_string)
 	{
-		ft_printf_fd(2, "Error allocating memory Coler string\n");
+		ft_printf_fd(2, "Error: allocating memory Coler string\n");
 		return (2);
 	}
 	return (0);
@@ -32,7 +32,7 @@ static int	ft_parse_map_2(t_cubed *info)
 	info->colors.floor_array = ft_split(info->colors.floor_string, ',');
 	if (!info->colors.ceiling_array || info->colors.floor_array)
 	{
-		ft_printf_fd(2, "Error allocating memory coler arrays");
+		ft_printf_fd(2, "Error: allocating memory coler arrays");
 		return (2);
 	}
 	i = 0;

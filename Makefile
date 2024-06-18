@@ -61,6 +61,7 @@ fclean: clean
 hclean:
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	-rm -f $(NAME) $(DEBUG_NAME)
 
 re: fclean all
 
