@@ -63,6 +63,7 @@ void	ft_write_error(t_cubed *info, int error);
 
 /*parse map*/
 int		ft_parse_map(t_cubed *info);
+int		ft_check_map(t_cubed *info);
 
 /*open map*/
 char	**ft_open_and_read(char *file);

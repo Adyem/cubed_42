@@ -48,7 +48,7 @@ static int	ft_parse_map_2(t_cubed *info)
 	}
 	if (ft_strlen(info->map.content[7]) != 1)
 		return (4);
-	return (0);
+	return (ft_check_map(info));
 }
 
 int	ft_parse_map(t_cubed *info)
