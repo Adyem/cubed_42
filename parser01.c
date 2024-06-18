@@ -46,6 +46,8 @@ static int	ft_parse_map_2(t_cubed *info)
 		info->colors.floor_color[i] = ft_atoi(info->colors.floor_array[i]);
 		i++;
 	}
+	if (ft_strlen(info->map.content[7]) != 1)
+		return (4);
 	return (0);
 }
 

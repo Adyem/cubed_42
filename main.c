@@ -40,9 +40,9 @@ static void	ft_initialize_info(t_cubed *info)
 static int	ft_check_extension(char *filename)
 {
 	char	*ext;
-	int			len;
-	int			ext_len;
-	int			returnv;
+	int		len;
+	int		ext_len;
+	int		returnv;
 
 	returnv = 0;
 	ext = ".cub";
