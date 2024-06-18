@@ -52,7 +52,7 @@ static int	ft_check_extension(char *filename)
 		returnv = 1;
 	returnv = ft_strcmp_cubed(filename + len - ext_len, ext);
 	if (returnv)
-		ft_printf_fd(2, "Error: Extension file incorrect\n");
+		ft_printf_fd(2, "Error-Extension file incorrect\n");
 	return (returnv);
 }
 
@@ -63,12 +63,12 @@ int	main(int argc, char **argv)
 
 	(void)argv;
 	if (argc != 2)
-		return(ft_printf_fd(2, "Error: Incorrect amount of arguments\n"), 1);
+		return(ft_printf_fd(2, "Error-Incorrect amount of arguments\n"), 1);
 	if (ft_check_extension(argv[1]))
 		return (1);
 	info = (t_cubed *)malloc(sizeof(t_cubed));
 	if (!info)
-		return (ft_printf_fd(2, "Error: allocating memory for info\n"), 2);
+		return (ft_printf_fd(2, "Error-Allocating memory for info\n"), 2);
 	ft_initialize_info(info);
 	info->map.content = ft_open_and_read(argv[1]);
 	if (!info->map.content)

@@ -1,4 +1,4 @@
-static void	ft_initialize_values(long *check, int *i, int *sign)
+static void	ft_initialize_values_rgb(long *check, int *i, int *sign)
 {
 	*check = 0;
 	*i = 0;
@@ -11,7 +11,7 @@ int	ft_check_value_rgb(char *input)
 	int		i;
 	int		sign;
 
-	ft_initialize_values(&check, &i, &sign);
+	ft_initialize_values_rgb(&check, &i, &sign);
 	if (input[i] == '+' || input[i] == '-')
 		i++;
 	if (!input[i])
