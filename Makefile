@@ -4,8 +4,10 @@ DEBUG_NAME	= cub3D_debug
 SRC		= main.c \
 		  free_memory.c \
 		  utils01.c \
+		  error_managment.c \
 		  open_map.c \
-		  parser01.c
+		  parser01.c \
+		  check_value.c
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
