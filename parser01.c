@@ -2,11 +2,14 @@
 
 static int	ft_check_images(char **image, char *string, char *check)
 {
+	static int	i;
+
+	i++;
 	if (ft_strncmp(string, check, 3) == 0)
 		*image = ft_strdup(&string[3]);
 	if (!*image)
 	{
-		ft_printf_fd(2, "Error-Allocating memory Image name\n");
+		ft_printf_fd(2, "Error-%i Allocating memory Image name\n", i);
 		return (2);
 	}
 	return (0);
@@ -14,11 +17,14 @@ static int	ft_check_images(char **image, char *string, char *check)
 
 static int	ft_check_colers(char **coler_string, char *string, char *check)
 {
+	static int	i;
+
+	i++;
 	if (ft_strncmp(string, check, 2))
 		*coler_string = ft_strdup(&string[2]);
 	if (!*coler_string)
 	{
-		ft_printf_fd(2, "Error-Allocating memory Coler string\n");
+		ft_printf_fd(2, "Error-%i Allocating memory Coler string\n", i);
 		return (2);
 	}
 	return (0);
