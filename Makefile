@@ -4,16 +4,28 @@ DEBUG_NAME	= cub3D_debug
 SRC		= main.c \
 		  free_memory.c \
 		  utils01.c \
-		  error_managment.c \
 		  open_map.c \
 		  parser01.c \
-		  check_value.c
+		  check_map.c \
+		  check_value.c \
+		  error_managment.c \
+		  find_entrance.c \
+		  flooder.c \
+		  init_xpm.c \
+		  mlxloop.c \
+		  movement.c \
+		  multiple_checks.c \
+		  raycasting.c \
+		  ray_draw.c \
+		  start_mlx.c \
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+OBJS_DEBUG	= $(addprefix $(OBJ_DIR)/,$(SRC:.c=_debug.o))
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -g
+DEBUG_FLAGS = -Wall -Werror -Wextra -g -DDEBUG=1
 HEADER	= cubed.h
 
 LIBFT_DIR	= ./libft
@@ -30,15 +42,16 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) -c $< -o $@
 
+$(OBJ_DIR)/%_debug.o: %.c $(HEADER)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(DEBUG_FLAGS) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) -c $< -o $@
+
 all: $(LIBFT) $(NAME)
 
-debug: $(LIBFT) debug_build
+debug: $(LIBFT) $(DEBUG_NAME)
 
-debug_build: CFLAGS += -DDEBUG=1
-debug_build: $(DEBUG_NAME)
-
-$(DEBUG_NAME): $(MINILIBX_LIB) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -o $(DEBUG_NAME) $(LDFLAGS)
+$(DEBUG_NAME): $(MINILIBX_LIB) $(OBJS_DEBUG) $(LIBFT)
+	$(CC) $(DEBUG_FLAGS) $(OBJS_DEBUG) -o $(DEBUG_NAME) $(LDFLAGS)
 
 $(NAME): $(MINILIBX_LIB) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
@@ -61,7 +74,6 @@ fclean: clean
 hclean:
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	-rm -f $(NAME) $(DEBUG_NAME)
 
 re: fclean all
 

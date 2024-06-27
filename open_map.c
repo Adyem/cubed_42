@@ -42,7 +42,7 @@ static char	**ft_realloc_dnd(char **return_v, int index, int fd)
 	return (temp);
 }
 
-char	**ft_read_file_dnd(int fd)
+static char	**ft_read_file_dnd(int fd)
 {
 	char	**return_v;
 	char	*line;
@@ -65,6 +65,22 @@ char	**ft_read_file_dnd(int fd)
 	return (return_v);
 }
 
+static void	ft_print_file(char **content)
+{
+	int	i;
+
+	if (content && DEBUG == 1)
+	{
+		i = 0;
+		while (content[i])
+		{
+			ft_printf("%s", content[i]);
+			i++;
+		}
+		ft_printf("\n");
+	}
+}
+
 char		**ft_open_and_read(char *file)
 {
 	int		fd;
@@ -78,6 +94,7 @@ char		**ft_open_and_read(char *file)
 	}
 	content = ft_read_file_dnd(fd);
 	close(fd);
+	ft_print_file(content);
 	if (!content)
 		ft_printf_fd(2, "Error allocating memory for content inside file\n");
 	return (content);

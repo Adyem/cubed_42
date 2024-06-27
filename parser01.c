@@ -1,12 +1,20 @@
 #include "cubed.h"
 
-static int	ft_check_images(char **image, char *string, char *check)
+/*replaced ft_strdup with ft_strdup_no_ln, because strdup copied the line break
+at the end of each line, which makes the color code and path incorrect*/
+
+int ft_check_images(char **image, char *string, char *check)
 {
 	static int	i;
+	char		*temp;
 
+	if (*image)
+		return (4);
+	temp = &string[ft_strlen(check)];
+	if (*temp == ' ')
+		temp++;
 	i++;
-	if (ft_strncmp(string, check, 3) == 0)
-		*image = ft_strdup(&string[3]);
+	*image = ft_strdup_no_ln(temp);
 	if (!*image)
 	{
 		ft_printf_fd(2, "Error-%i Allocating memory Image name\n", i);
@@ -15,30 +23,35 @@ static int	ft_check_images(char **image, char *string, char *check)
 	return (0);
 }
 
-static int	ft_check_colers(char **coler_string, char *string, char *check)
+int ft_check_colors(char **color_string, char *string, char *check)
 {
 	static int	i;
+	char		*temp;
 
+	if (*color_string)
+		return (4);
+	temp = &string[ft_strlen(check)];
+	while (*temp == ' ')
+		temp++;
 	i++;
-	if (ft_strncmp(string, check, 2))
-		*coler_string = ft_strdup(&string[2]);
-	if (!*coler_string)
+	*color_string = ft_strdup_no_ln(temp);
+	if (!*color_string)
 	{
-		ft_printf_fd(2, "Error-%i Allocating memory Coler string\n", i);
+		ft_printf_fd(2, "Error-%i Allocating memory Color string\n", i);
 		return (2);
 	}
 	return (0);
 }
 
-static int	ft_parse_map_2(t_cubed *info)
+static int ft_parse_map_2(t_cubed *info, int index)
 {
-	int	i;
+	int i;
 
 	info->colors.ceiling_array = ft_split(info->colors.ceiling_string, ',');
 	info->colors.floor_array = ft_split(info->colors.floor_string, ',');
-	if (!info->colors.ceiling_array || info->colors.floor_array)
+	if (!info->colors.ceiling_array || !info->colors.floor_array)
 	{
-		ft_printf_fd(2, "Error-Allocating memory coler arrays");
+		ft_printf_fd(2, "Error-Allocating memory color arrays");
 		return (2);
 	}
 	i = 0;
@@ -52,34 +65,40 @@ static int	ft_parse_map_2(t_cubed *info)
 		info->colors.floor_color[i] = ft_atoi(info->colors.floor_array[i]);
 		i++;
 	}
-	if (ft_strlen(info->map.content[7]) != 1)
-		return (4);
-	return (ft_check_map(info));
+	return ft_check_map(info, index);
 }
 
-int	ft_parse_map(t_cubed *info)
+static void	ft_parse_value(t_cubed *info, int *i, int *error)
 {
-	int	error;
+	if (info->map.content[*i][0] == '\n' && info->map.content[*i][1] == '\0')
+	{
+		(*i)++;
+		return ;
+	}
+	*error = ft_check_textures_and_colors(info, info->map.content[*i]);
+	(*i)++;
+	return ;
+}
+
+int ft_parse_map(t_cubed *info)
+{
+	int error;
+	int i;
 
 	if (ft_check_length(info->map.content) < 8)
-		return (4);
+        return (4);
 	error = 0;
-	error += ft_check_images(&info->textures.north_texture.file_name,
-			info->map.content[0], "NO ");
-	error += ft_check_images(&info->textures.south_texture.file_name,
-			info->map.content[1], "SO ");
-	error += ft_check_images(&info->textures.west_texture.file_name,
-			info->map.content[2], "WE ");
-	error += ft_check_images(&info->textures.east_texture.file_name,
-			info->map.content[3], "EA ");
-	error += ft_check_colers(&info->colors.floor_string,
-			info->map.content[5], "F ");
-	error += ft_check_colers(&info->colors.ceiling_string,
-			info->map.content[6], "C ");
-	if (error)
+	i = 0;
+	while (info->map.content[i])
+	{
+		ft_parse_value(info, &i, &error);
+		if (error)
+			return (error);
+		if (ft_all_found(info) == 0)
+			break ;
+	}
+	if (ft_check_malloc_texture(info))
 		return (2);
-	if (ft_strlen(info->map.content[4]) != 1)
-		return (4);
-	error = ft_parse_map_2(info);
+	error = ft_parse_map_2(info, i);
 	return (error);
 }

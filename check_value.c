@@ -15,7 +15,7 @@ int	ft_check_value_rgb(char *input)
 	if (input[i] == '+' || input[i] == '-')
 		i++;
 	if (!input[i])
-		return (3);
+		return (1);
 	if (input[0] == '-')
 		sign = -1;
 	while (input[i])
@@ -24,11 +24,11 @@ int	ft_check_value_rgb(char *input)
 		{
 			check = (check * 10) + input[i] - '0';
 			if (sign * check < 0 || sign * check > 255)
-				return (3);
+				return (1);
 			i++;
 		}
 		else
-			return (3);
+			return (1);
 	}
 	return (0);
 }

@@ -32,7 +32,7 @@ static void	ft_initialize_info(t_cubed *info)
 	info->colors.ceiling_color[2] = -1;
 	info->map.map = NULL;
 	info->map.copy_map = NULL;
-	info->map.player_start_amount = -1;
+	info->map.player_start_amount = 0;
 	ft_more_initializing(info);
 	return ;
 }
@@ -61,9 +61,8 @@ int	main(int argc, char **argv)
 	int		error;
 	t_cubed	*info;
 
-	(void)argv;
 	if (argc != 2)
-		return(ft_printf_fd(2, "Error-Incorrect amount of arguments\n"), 1);
+		return (ft_printf_fd(2, "Error-Incorrect amount of arguments\n"), 1);
 	if (ft_check_extension(argv[1]))
 		return (1);
 	info = (t_cubed *)malloc(sizeof(t_cubed));
@@ -76,4 +75,7 @@ int	main(int argc, char **argv)
 	error = ft_parse_map(info);
 	if (error)
 		return (ft_write_error(info, error), error);
+	start_mlx(info);
+	ft_free_info(info);
+	return (0);
 }
