@@ -6,7 +6,7 @@
 /*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:16:47 by kcheung           #+#    #+#             */
-/*   Updated: 2024/06/26 12:18:09 by kcheung          ###   ########.fr       */
+/*   Updated: 2024/06/27 13:34:18 by kcheung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	get_tex_x(t_cubed *info)
 			+ info->raydata.perp_dist * info->raydata.raydir_x;
 	info->raydata.wall_x -= floor((info->raydata.wall_x));
 	info->raydata.tex_x = (int)(info->raydata.wall_x * (double)TEX_WIDTH);
-	if (info->raydata.side == 0 && info->raydata.raydir_x > 0)
+	if (info->raydata.side == 0 && info->raydata.raydir_x < 0)
 		info->raydata.tex_x = TEX_WIDTH - info->raydata.tex_x - 1;
-	if (info->raydata.side == 1 && info->raydata.raydir_y < 0)
+	if (info->raydata.side == 1 && info->raydata.raydir_y > 0)
 		info->raydata.tex_x = TEX_WIDTH - info->raydata.tex_x - 1;
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multiple_checks.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:57:30 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 int	ft_check_malloc_texture(t_cubed *info)
@@ -32,7 +44,7 @@ int	ft_check_textures_and_colors(t_cubed *info, char *line)
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		return (ft_check_images(&info->textures.west_texture.file_name,
 				line, "WE "));
-	else if	(ft_strncmp(line, "EA ", 3) == 0)
+	else if (ft_strncmp(line, "EA ", 3) == 0)
 		return (ft_check_images(&info->textures.east_texture.file_name,
 				line, "EA "));
 	else if (ft_strncmp(line, "F ", 2) == 0)

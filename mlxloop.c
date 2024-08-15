@@ -6,7 +6,7 @@
 /*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 10:32:51 by kcheung           #+#    #+#             */
-/*   Updated: 2024/06/26 11:06:42 by kcheung          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:59:51 by kcheung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	destroy_error(t_cubed *info, int err)
 {
 	if (err == 0)
-		ft_putendl_fd("Error creating mlx images", 2);
+		ft_putendl_fd("Error\n creating mlx image", 2);
 	else if (err == 1)
-		ft_putendl_fd("Error initialising mlx", 2);
+		ft_putendl_fd("Error\n initialising mlx", 2);
 	else if (err == 2)
-		ft_putendl_fd("Error creating mlx window", 2);
+		ft_putendl_fd("Error\n creating mlx window", 2);
 	else if (err == 3)
-		ft_putendl_fd("Error creating mlx image", 2);
+		ft_putendl_fd("Error\n importing mlx textures", 2);
 	ft_free_info(info);
 	exit(1);
 }
@@ -102,5 +102,6 @@ int	game_loop(t_cubed *info)
 	mlx_put_image_to_window(info->mlx, info->win,
 		info->textures.ptr_full_img, 0, 0);
 	mlx_destroy_image(info->mlx, info->textures.ptr_full_img);
+	info->textures.ptr_full_img = NULL;
 	return (0);
 }

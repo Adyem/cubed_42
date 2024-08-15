@@ -6,7 +6,7 @@
 /*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:02:22 by kcheung           #+#    #+#             */
-/*   Updated: 2024/06/26 14:40:20 by kcheung          ###   ########.fr       */
+/*   Updated: 2024/06/27 13:15:26 by kcheung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	dda(t_cubed *info)
 			info->raydata.map_y += info->raydata.step_y;
 			info->raydata.side = 1;
 		}
-// temp value as the map parser is not correct and caused crashing. it should be == '1' instead of > 0
 		if (info->map.map[info->raydata.map_y][info->raydata.map_x] == '1')
 		{
 			info->raydata.hit = 1;

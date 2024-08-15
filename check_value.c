@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_value.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:56:42 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 static void	ft_initialize_values_rgb(long *check, int *i, int *sign)
 {
 	*check = 0;
@@ -12,9 +24,9 @@ int	ft_check_value_rgb(char *input)
 	int		sign;
 
 	ft_initialize_values_rgb(&check, &i, &sign);
-	if (input[i] == '+' || input[i] == '-')
+	if (input && (input[i] == '+' || input[i] == '-'))
 		i++;
-	if (!input[i])
+	if (!input || !input[i])
 		return (1);
 	if (input[0] == '-')
 		sign = -1;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cubed.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:56:50 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBED_H
 # define CUBED_H
 
@@ -134,6 +146,7 @@ typedef struct s_cubed
 
 /*error managment*/
 void	ft_write_error(t_cubed *info, int error);
+int		mouse_turn(int x, int y, t_cubed *info);
 
 /*parse map*/
 int		ft_parse_map(t_cubed *info);
@@ -162,6 +175,7 @@ int		ft_strcmp_cubed(char *string1, char *string2);
 int		ft_check_value_rgb(char *input);
 int		ft_check_length(char **pointer);
 char	*ft_strdup_no_ln(const char *s1);
+int		ft_check_color_string(char *string);
 
 /*start_mlx*/
 void	start_mlx(t_cubed *info);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_memory.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:57:14 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 #include "minilibx-linux/mlx.h"
 
@@ -28,6 +40,8 @@ static void	ft_free_mlx(t_cubed *info)
 		mlx_destroy_image(info->mlx, info->textures.north_texture.img_ptr);
 	if (info->textures.south_texture.img_ptr && info->mlx)
 		mlx_destroy_image(info->mlx, info->textures.south_texture.img_ptr);
+	if (info->mlx && info->textures.ptr_full_img)
+		mlx_destroy_image(info->mlx, info->textures.ptr_full_img);
 	if (info->mlx && info->win)
 		mlx_destroy_window(info->mlx, info->win);
 	if (info->mlx)

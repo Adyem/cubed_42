@@ -1,0 +1,13 @@
+
+F   100,100,100
+C   153,255,255
+NO    ./Textures/cobblestone.xpm
+SO    ./Textures/color_stone.xpm
+WE    ./Textures/mossy_cobblestone1.xpm
+EA    ./Textures/netherrack.xpm
+111111111
+100S01011
+100001111d
+100000001
+111111111
+

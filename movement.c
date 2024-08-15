@@ -6,7 +6,7 @@
 /*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:11:08 by kcheung           #+#    #+#             */
-/*   Updated: 2024/06/24 13:49:51 by kcheung          ###   ########.fr       */
+/*   Updated: 2024/06/27 13:13:48 by kcheung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	move_backward(t_cubed *info)
 
 void	turning(t_cubed *info, int dir, double olddirx, double oldplanex)
 {
-	if (dir == 1)
+	if (dir == 0)
 	{
 		info->raydata.dir_x = info->raydata.dir_x * cos(-0.048)
 			- info->raydata.dir_y * sin(-0.048);
@@ -45,7 +45,7 @@ void	turning(t_cubed *info, int dir, double olddirx, double oldplanex)
 		info->raydata.plane_y = oldplanex * sin(-0.048)
 			+ info->raydata.plane_y * cos(-0.048);
 	}
-	else if (dir == 0)
+	else if (dir == 1)
 	{
 		info->raydata.dir_x = info->raydata.dir_x * cos(0.048)
 			- info->raydata.dir_y * sin(0.048);

@@ -1,9 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser01.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:57:36 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
-/*replaced ft_strdup with ft_strdup_no_ln, because strdup copied the line break
-at the end of each line, which makes the color code and path incorrect*/
-
-int ft_check_images(char **image, char *string, char *check)
+int	ft_check_images(char **image, char *string, char *check)
 {
 	static int	i;
 	char		*temp;
@@ -11,23 +20,27 @@ int ft_check_images(char **image, char *string, char *check)
 	if (*image)
 		return (4);
 	temp = &string[ft_strlen(check)];
-	if (*temp == ' ')
+	while (*temp == ' ')
 		temp++;
+	if (DEBUG == 1)
+		ft_printf("%s\n", temp);
 	i++;
 	*image = ft_strdup_no_ln(temp);
 	if (!*image)
 	{
-		ft_printf_fd(2, "Error-%i Allocating memory Image name\n", i);
+		ft_printf_fd(2, "Error\n-%i Allocating memory Image name\n", i);
 		return (2);
 	}
 	return (0);
 }
 
-int ft_check_colors(char **color_string, char *string, char *check)
+int	ft_check_colors(char **color_string, char *string, char *check)
 {
 	static int	i;
 	char		*temp;
 
+	if (ft_check_color_string(string))
+		return (4);
 	if (*color_string)
 		return (4);
 	temp = &string[ft_strlen(check)];
@@ -37,26 +50,28 @@ int ft_check_colors(char **color_string, char *string, char *check)
 	*color_string = ft_strdup_no_ln(temp);
 	if (!*color_string)
 	{
-		ft_printf_fd(2, "Error-%i Allocating memory Color string\n", i);
+		ft_printf_fd(2, "Error\n-%i Allocating memory Color string\n", i);
 		return (2);
 	}
 	return (0);
 }
 
-static int ft_parse_map_2(t_cubed *info, int index)
+static int	ft_parse_map_2(t_cubed *info, int index)
 {
-	int i;
+	int	i;
 
 	info->colors.ceiling_array = ft_split(info->colors.ceiling_string, ',');
 	info->colors.floor_array = ft_split(info->colors.floor_string, ',');
 	if (!info->colors.ceiling_array || !info->colors.floor_array)
 	{
-		ft_printf_fd(2, "Error-Allocating memory color arrays");
+		ft_printf_fd(2, "Error\n-Allocating memory color arrays\n");
 		return (2);
 	}
 	i = 0;
-	while (i < 3)
+	while (info->colors.ceiling_array[i] || info->colors.floor_array[i])
 	{
+		if (i > 2)
+			return (5);
 		if (ft_check_value_rgb(info->colors.ceiling_array[i]))
 			return (5);
 		if (ft_check_value_rgb(info->colors.floor_array[i]))
@@ -65,7 +80,7 @@ static int ft_parse_map_2(t_cubed *info, int index)
 		info->colors.floor_color[i] = ft_atoi(info->colors.floor_array[i]);
 		i++;
 	}
-	return ft_check_map(info, index);
+	return (ft_check_map(info, index));
 }
 
 static void	ft_parse_value(t_cubed *info, int *i, int *error)
@@ -80,13 +95,13 @@ static void	ft_parse_value(t_cubed *info, int *i, int *error)
 	return ;
 }
 
-int ft_parse_map(t_cubed *info)
+int	ft_parse_map(t_cubed *info)
 {
-	int error;
-	int i;
+	int	error;
+	int	i;
 
 	if (ft_check_length(info->map.content) < 8)
-        return (4);
+		return (4);
 	error = 0;
 	i = 0;
 	while (info->map.content[i])

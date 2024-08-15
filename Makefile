@@ -18,6 +18,7 @@ SRC		= main.c \
 		  raycasting.c \
 		  ray_draw.c \
 		  start_mlx.c \
+		  color_string.c
 
 OBJ_DIR		= obj
 OBJS		= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

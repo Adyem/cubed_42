@@ -6,7 +6,7 @@
 /*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:31:31 by kcheung           #+#    #+#             */
-/*   Updated: 2024/06/26 14:01:23 by kcheung          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:46:40 by kcheung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	start_mlx(t_cubed *info)
 	info->key.d = 0;
 	info->key.left = 0;
 	info->key.right = 0;
+	info->textures.ptr_full_img = NULL;
 	init_basic_value(info, 0, 0);
 	info->mlx = mlx_init();
 	init_xpm(info, 0, 0, 0);
@@ -123,6 +124,7 @@ void	start_mlx(t_cubed *info)
 	mlx_loop_hook(info->mlx, game_loop, info);
 	mlx_hook(info->win, KeyPress, KeyPressMask, &key_press, info);
 	mlx_hook(info->win, KeyRelease, KeyReleaseMask, &key_release, info);
+	mlx_hook(info->win, MotionNotify, PointerMotionMask, &mouse_turn, info);
 	mlx_hook(info->win, 17, 0, &destroy_success, info);
 	mlx_loop(info->mlx);
 }

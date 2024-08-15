@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kcheung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 13:36:40 by bvangene          #+#    #+#             */
+/*   Updated: 2024/07/26 10:57:34 by kcheung          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 static void	ft_malloc_fail_gnl_dnd(char **return_v, int fd)
@@ -13,7 +25,7 @@ static void	ft_malloc_fail_gnl_dnd(char **return_v, int fd)
 			free(return_v[i]);
 			i++;
 		}
-		free(return_v[i]);
+		free(return_v);
 	}
 	return ;
 }
@@ -81,7 +93,7 @@ static void	ft_print_file(char **content)
 	}
 }
 
-char		**ft_open_and_read(char *file)
+char	**ft_open_and_read(char *file)
 {
 	int		fd;
 	char	**content;
@@ -89,13 +101,13 @@ char		**ft_open_and_read(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf_fd(2, "Error opening file :%s\n", strerror(errno));
+		ft_printf_fd(2, "Error\n opening file :%s\n", strerror(errno));
 		return (NULL);
 	}
 	content = ft_read_file_dnd(fd);
 	close(fd);
 	ft_print_file(content);
 	if (!content)
-		ft_printf_fd(2, "Error allocating memory for content inside file\n");
+		ft_printf_fd(2, "Error\n allocating memory for content inside file\n");
 	return (content);
 }
